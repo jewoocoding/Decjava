@@ -52,64 +52,65 @@ public class Exercise1 {
 				answer = true; // 무한 반복문으로
 				break;
 			case 'n', 'N' :
-				System.out.print("[");
-				for(int i=0; i<inputArray.length;i++) {
+				System.out.print("["); // '[' 출력
+				for(int i=0; i<inputArray.length;i++) { // 입력된 배열 출력
 					if(i == inputArray.length-1) {
-						System.out.print(inputArray[i]);
+						System.out.print(inputArray[i]+"]");
 					}else {
-						System.out.println(inputArray[i]+", ");
+						System.out.print(inputArray[i]+", ");
 					}
 				}
-				answer = false; // 바로 입력한 것만 출력
+				answer = false; // 반복문으로 가지 않음
 				break;
 			default : 
 				System.out.println("잘못된 문자입니다.");
 				answer = false;
 		}
 		
-		String[] outputArray = new String[input]; //
+		String[] temp = inputArray; // temp 배열변수가 처음 입력된 배열을 가리키게 함
 		
-		for(int i=0; i< input;i++) {
-			outputArray[i]=inputArray[i];
-		}
-		
-		
-		String[] temp = outputArray;
-		
-		while(answer) {
+		while(answer) { // answer가 참일 때 무한 반복
 			
 			
-			System.out.print("더 입력하고 싶은 개수 : ");
+			System.out.print("더 입력하고 싶은 개수 : "); // 몇 개를 더 입력받을 지 입력받음
 			input = sc.nextInt();
 			
-			String addArray[] = new String[input];
+			String addArray[] = new String[input]; // 입력받은 크기의 배열 생성
 			
-			for(int i=0; i<addArray.length; i++) {
-				System.out.println((count+i+1)+"번째 문자열 : ");
+			for(int i=0; i<addArray.length; i++) { // 문자열 입력받아서 배열에 저장
+				System.out.print((count+i+1)+"번째 문자열 : ");
 				addArray[i] = sc.next();
 			}
 			
-			count += input;
+			count += input; // 입력을 더 받은만큼 count값을 늘려서 전체 몇개를 입력받았는지 저장함
 			
-			String tempInWhile[] = new String[count];
+			String tempInWhile[] = new String[count]; // 입력받은 모든 문자열을 저장할 수 있는 배열 생성
 			
-			for(int i=0; i<temp.length;i++) {
+			for(int i=0; i<temp.length;i++) { // 반복 전까지 입력받은 문자열들을 tempInWhile에 저장
 				tempInWhile[i] = temp[i];
 			}
-			for(int i=0;i<addArray.length;i++) {
+			for(int i=0;i<addArray.length;i++) { // 이번 반복에 입력받은 문자열들을 뒤에 저장
 				tempInWhile[i+temp.length] = addArray[i];
 			}
 			
-			System.out.println("더 값을 입력하시겠습니까? : ");
+			System.out.println("더 값을 입력하시겠습니까? : "); // 더 입력 받을 건지 사용자가 선택
 			ch = sc.next().charAt(0);
+			
+			temp = tempInWhile; // 지금까지 모든 문자열을 저장한 배열을 temp가 가리키게 함
 			
 			switch(ch) {
 				case 'y', 'Y' : 
-					temp = tempInWhile;
-					answer = true;
+					answer = true; // 다시반복
 					break;
-				case 'n', 'N' :
-					String [] outputArrayInWhile = tempInWhile;
+				case 'n', 'N' : // 배열 출력 후 종료
+					System.out.print("[");
+					for(int i=0; i<tempInWhile.length; i++) {
+						if(i == tempInWhile.length-1) {
+							System.out.print(tempInWhile[i]+"]");
+						}else {
+							System.out.print(tempInWhile[i]+", ");
+						}
+					}
 					answer = false;
 					break;
 				default : 
@@ -119,9 +120,7 @@ public class Exercise1 {
 			
 		}
 		
-		for(String s : outputArray )
-			System.out.print(s+" ");
-		
+
 		
 		
 		
