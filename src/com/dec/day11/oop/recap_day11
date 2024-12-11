@@ -1,0 +1,56 @@
+1. 상속
+2. 업캐스팅/다운캐스팅
+3. 오버라이딩/오버로딩
+4. 추상메소드와 추상클래스
+
+- 상속
+class Car {}
+class Sonata extends Car {}
+
+- 업캐스팅
+Car car = new Sonata();
+
+public void showSkills(Car car) {} 
+
+Sonata sonata = new Sonata();
+showSkills(new Sonata());
+showSkills(sonata);
+
+- 오버라이딩
+class Shape {
+	public void draw() {}
+}
+class Line extends Shape {
+	@Override
+	public void draw() {
+		// 코드 재작성
+	}
+}
+
+- 추상메소드와 클래스
+abstract class Shape {
+	private String name;
+	private String color;
+	public void showColor() {}
+	public abstract void draw();
+}
+class Line extends Shape {
+	@Override
+	public void draw() {
+		// 코드 재작성
+	}
+}
+
+Shape shape = new Shape(); -> X
+Shape shape = new Line(); -> O
+
+- 인터페이스
+interface PhoneInterface {
+	public static final int TIME_OUT = 10000;
+	public abstract void showLogo();
+	void sendCall();
+}
+
+- Object 클래스
+모든 클래스의 조상클래스
+toString(), equals() 사용
