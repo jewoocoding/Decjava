@@ -13,21 +13,24 @@ public class Exam_ListCollection {
 		 * ArrayList 클래스를 사용하여 구현할 수 있음.
 		 */
 		List<String> nameList = new ArrayList<String>();
+		// ArrayList에 데이터 추가
 		nameList.add("챗지피티");
 		nameList.add("클로드");
 		nameList.add("코파일럿");
-		
+		// 출력
 		for(int i=0; i<nameList.size();i++) {
 			String result = nameList.get(i);
 			System.out.println(result);
 		}
+		// 인덱스값을 이용해 삭제
 		nameList.remove(0);
 		System.out.println();
 		for(int i=0; i<nameList.size();i++) {
 			String result = nameList.get(i);
 			System.out.println(result);
 		}
-		nameList.add(0, "챗지피티");
+		
+		nameList.add(0, "챗지피티"); // 인덱스를 지정하여 데이터 저장
 		nameList.add("퍼플렉시티");
 		nameList.add("라마");
 		System.out.println();
@@ -35,9 +38,10 @@ public class Exam_ListCollection {
 			String result = nameList.get(i);
 			System.out.println(result);
 		}
-		
+		// 여러 속성 출력
 		System.out.println("크기 : "+nameList.size());
 		System.out.println("비움 여부 : "+nameList.isEmpty());
+		// 초기화
 		nameList.clear();
 		System.out.println("크기 : "+nameList.size());
 		System.out.println("비움 여부 : "+nameList.isEmpty());
