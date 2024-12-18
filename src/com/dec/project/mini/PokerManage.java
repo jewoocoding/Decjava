@@ -118,11 +118,63 @@ public class PokerManage {
 		}
 		return enter;
 	}
+	// 베팅을 시작할 인원 선택
+	public Player choiceStartBettingPlayer() {
+		List<Integer> maxNumber = new ArrayList<Integer>();
+		// 플레이어 선택해서 테이블에 있는 카드중 가장 큰 수 고르기
+		for(int i=0; i<playerList.size();i++) {
+			// 테이블에 있는 카드중 0번째 인덱스를 일단 넣음
+			int maxNum = playerList.get(i).getShowCard().get(0).getNumber();
+			for(int j=0; j< playerList.get(i).getShowCard().size();j++) {
+				// 하나씩 비교하여 더 큰수를 maxNum에 넣음
+				maxNum = playerList.get(i).getShowCard().get(j).getNumber() > maxNum ? 
+						playerList.get(i).getShowCard().get(j).getNumber() : maxNum;
+			}
+			// 가장 큰수를 리스트에 넣음
+			maxNumber.add(maxNum);
+		}
+		
+		// 테이블에 있는 카드중 가장 큰 수를 가지고 있는 플레이어 고르기
+		int bettingPlayerNum = 0;
+		for(int i=0; i< maxNumber.size()-1;i++) {
+			bettingPlayerNum = maxNumber.get(i) > maxNumber.get(i+1) ? i : i+1;
+		}
+		return playerList.get(bettingPlayerNum);
+	}
 	// 베팅
-	public void betting(Player player, int bet) {
+	public int betting(Player player, int bet) {
 		bet = player.getMoney();
 		bettingMoney += bet;
 		player.setMoney(player.getMoney()-bet);
+		return bet;
 	}
-
+	// 컴퓨터의 베팅액 설정
+	public int betting(Player com) {
+		int money = bettingMoney/2 > com.getMoney() 
+				? (int)(Math.random()*(com.getMoney()+1)) 
+						: (int)(Math.random()*(bettingMoney/2+1));
+		bettingMoney += money;
+		com.setMoney(com.getMoney() - money);
+		return money;
+	}
+	// 컴퓨터의 콜/레이즈/다이 여부 설정
+	
+	// 플레이어 중 등수 설정
+	public void checkMyDeck(Player player) {
+		
+		// 로얄 스트레이트 플러시
+		
+		// 백 스트레이트 플러시
+		// 스트레이트플러시
+		// 포카드
+		// 풀하우스
+		// 플러시
+		// 마운틴
+		// 백스트레이트
+		// 스트레이트
+		// 트리플
+		// 투페어
+		// 원페어
+	}
+	
 }

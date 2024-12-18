@@ -19,7 +19,7 @@ public class PokerController {
 				view.printPlayerInfor(manage.getPlayerList());
 				// 카드 나눠줌
 				for(int i=0;i<4;i++) {
-					manage.giveCard();					
+					manage.giveCard();				
 				}
 				// 내 카드 출력
 				view.printMyCards(manage.getPlayerList());

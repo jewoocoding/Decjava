@@ -69,7 +69,7 @@ public class PokerView {
 	}
 	// 게임 시작 시 기본금 빠져나가는 화면 출력
 	public void printEnter(int enter) {
-		System.out.println("게임 기본 베팅액 "+enter+"원을 지급하셨습니다.");
+		System.out.println("게임 기본 베팅액 "+enter+"원을 지불하셨습니다.");
 	}
 	
 	// 게임인원 정해서 몇 명인지 리턴
@@ -132,12 +132,13 @@ public class PokerView {
 				break select;
 			}catch(InputMismatchException e) {
 				System.out.println("숫자를 입력해주세요");
+				sc.next();
 			}catch(ArrayIndexOutOfBoundsException e) {
 				System.out.println("인덱스값을 입력해주세요");
 			}
 		}
 	}
-
+	// 테이블 출력
 	public void printTable(List<Player> playerList) {
 		System.out.println("===== 테이블 =====");
 		for(int i=0; i< playerList.size();i++) {
@@ -149,18 +150,45 @@ public class PokerView {
 			System.out.println();
 		}
 	}
+	// 베팅액 설정 화면
+	public int setBettingMoney(Player player, int bettingMoney) {
+		System.out.println("이번턴에 베팅하실 분은 "+player.getName()+"님입니다.");
+		int input = 0;
+		set:
+		while(true) {
+			try {
+				System.out.print("얼마를 베팅하시겠습니까? ");
+				input = sc.nextInt();
+				if(input > player.getMoney()) {
+					System.out.println("현재 가진 돈 이내로 베팅해주세요.");
+					continue;
+				}else if(input > bettingMoney/2) {
+					System.out.println("현재 베팅액의 절반을 넘지 않도록 해주세요.");
+					continue;
+				}
+				break set;
+			}catch(InputMismatchException e) {
+				System.out.println("정수를 입력해주세요.");
+				sc.next();
+				continue;
+			}
+		}
+		return input;
+	}
+	// 현재 베팅액 출력
+	public void printBettingMoney(int bet) {
+		System.out.println("현재 베팅액은 "+bet+"원입니다.");
+	}
+	// 얼마 베팅했는지 출력
+	public void printBettingMoney(Player player, int bet) {
+		System.out.println(player.getName()+"님이 "+bet+"원을 베팅하셨습니다.");
+	}
+	// 플레이어가 콜/레이즈/다이 결정
+	
 
+	// 메세지 출력
 	public void displayMessage(String msg) {
 		System.out.println(msg);
 	}
-
-	public int printBetting() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 	
-	public int printStartGame() {
-		return 0;
-	}
-
 }

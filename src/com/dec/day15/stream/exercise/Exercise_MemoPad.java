@@ -20,18 +20,18 @@ public class Exercise_MemoPad {
 		System.out.print("저장할 파일 입력 : ");
 		String input = sc.next();
 		System.out.println("종료는 exit");
-		
+		String destination = "src/com/dec/day15/stream/exercise/"+input+".txt";
 		try {
 			// Writer 객체 생성
-			Writer fw = new FileWriter("src/com/dec/day15/stream/exercise/"+input+".txt");
+			Writer fw = new FileWriter(destination);
 			// 라인 카운트 변수
 			int line = 0;
 			do {
 				line++;
 				System.out.print(line+" : ");
-				input = sc.next();
+				input = sc.nextLine(); // nextLine()을 하면 왜 첫번째 반복때 입력을 못 하는지?
 				if(!(input.equals("exit"))) // exit를 입력하면 파일에 저장하지 않고 프로그램 종료
-					fw.write(input); // 입력받은 문자 파일에 저장
+					fw.write(input+"\n"); // 입력받은 문자 파일에 저장
 			}while(!(input.equals("exit")));
 			System.out.println("파일 저장이 완료되었습니다. F5를 눌러 확인해보세요~");
 			fw.flush();
