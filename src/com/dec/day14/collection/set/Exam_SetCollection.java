@@ -43,7 +43,7 @@ public class Exam_SetCollection {
 		// Iterator = 지시자
 		Iterator<String> it = fruitsSet.iterator();
 		while(it.hasNext()) {
-			System.out.println(it.next().toString());
+			System.out.println(it.next().toString()); // toString()없어도 동작
 		}
 		
 	}

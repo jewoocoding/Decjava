@@ -9,9 +9,21 @@ public class Exercise_TextFileCopy {
 	 * 단, 문자 기반 스트림을 사용하세요.
 	 */
 	public static void main(String[] args) {
+		/*
+		 * 파일을 복사하려고 해
+		 * C드라이브 밑 Windows폴더 밑에 system.ini파일을 복사하려고 해
+		 * main() 메소드를 기준으로 생각했을 때 해당 파일을 읽어야 하기 때문에
+		 * 입력 스트림을 사용해야해.
+		 * 입력스트림을 사용해서 파일을 읽은 다음에 읽은 내용은 
+		 * 목적지 C:\\Temp\\system.txt파일에 써야해
+		 * main()메소드를 기준으로 생각했을 때 해당 내요을 내보내야 하기 
+		 * 때문에 출력스트림을 사용해야해.
+		 * 출력스트림을 사욯애 읽은 내용은 system.text파일에 저장돼.
+		 */
 		Reader fr = null;
 		Writer fw = null;
 		try {
+			// 입력
 			fr = new FileReader("C:\\Windows\\system.ini");
 			char[] tempChar = new char[1024];
 			int readCount = 0;
@@ -21,7 +33,7 @@ public class Exercise_TextFileCopy {
 			}
 			System.out.println("복사 완료");
 			
-			
+			// 출력
 			fw = new FileWriter("C:\\Temp\\system.txt");
 			fw.write(text);
 			fw.flush();
